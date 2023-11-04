@@ -3,7 +3,7 @@ const App = () => {
     <div>
       <h1>APP PARA PELIS</h1>
       <h2>
-        TEST
+        ESTO FALLA
       </h2>
     </div>
   );
