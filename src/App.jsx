@@ -3,7 +3,7 @@ const App = () => {
     <div>
       <h1>APP PARA PELIS</h1>
       <h2>
-        ESTO FUNCIONA
+        ESTO ES PARA EL CLIENTE PRUEBE
       </h2>
     </div>
   );
