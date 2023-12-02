@@ -1,7 +1,45 @@
-import React from 'react';
+import React, { useState } from "react";
+import { useAuth } from "../../../features/auth/hook/use_auth";
 
 const LoginView = () => {
-  return <div>LoginView</div>;
+  const { login } = useAuth();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+    try {
+      const form = e.target;
+      const formData = new FormData(form);
+      const { email, password } = Object.fromEntries(formData);
+
+      form.reset();
+
+
+      await login(email, password);
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.msg);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h1>ReactFilms</h1>
+
+      <form onSubmit={handleSubmit}>
+        <input type="email" name="email" />
+        <input type="password" name="password" />
+        <button type="submit">Iniciar Sesión</button>
+        <p>{error}</p>
+      </form>
+    </div>
+  );
 };
 
 export default LoginView;
